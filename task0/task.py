@@ -37,20 +37,22 @@
 
 import re
 
+
 def main(csv_graph: str) -> list[list[int]]:
     edges_text = csv_graph.splitlines()
-    edges : list[list[int]] = []
+    edges: list[list[int]] = []
     max_vertex_num = 0
 
     for edge in edges_text:
-        a,b = re.split(';|,|, |; | ', edge,2)
+        a, b = re.split(';|,|, |; | ', edge, 2)
         a = int(a)
         b = int(b)
-        edges.append([a,b])
-        max_vertex_num = max(max_vertex_num,a,b)
-    matrix =[[0 for i in range(max_vertex_num)] for i in range(max_vertex_num)]
+        edges.append([a, b])
+        max_vertex_num = max(max_vertex_num, a, b)
+    matrix = [[0 for i in range(max_vertex_num)]
+              for i in range(max_vertex_num)]
 
-    for a,b in edges:
+    for a, b in edges:
         matrix[a-1][b-1] = 1
         matrix[b-1][a-1] = 1
 
