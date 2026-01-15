@@ -147,7 +147,7 @@ def find_clusters(E_star, objects):
     
     return clusters
 
-def build_consistent_ranking(json_str1, json_str2):
+def main(json_str1, json_str2):
     """Основная функция построения согласованной ранжировки"""
     
     ranking_a = json.loads(json_str1)
@@ -230,7 +230,7 @@ def build_consistent_ranking(json_str1, json_str2):
     
     while queue:
         current = queue.popleft()
-        sorted_clusters.append(clusters[current])
+        sorted_clusters.append([int(x) for x in clusters[current]])
         
         for j in range(k):
             if cluster_order[current, j] == 1:
@@ -246,4 +246,4 @@ def build_consistent_ranking(json_str1, json_str2):
         else:
             result.append(cluster)
     
-    return result
+    return json.dumps(result)
